@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block body %}
+  
+<div class="moz-login-wrapper">
+  <div class="moz-login-container">
+    <img src="{{ url_for('static', filename='assets/images/magnustic300x76.png') }}" alt="Logo" class="login-logo-img">
+    
+    <h1 class="moz-welcome">Welcome! Log in here.</h1>
+    
+    <div class="moz-signup-prompt">
+      Haven't signed up? <a href="{{ url_for('register') }}">Create an account</a>
+    </div>
+    
+    <form method="POST" class="moz-login-form">
+      {{ form.hidden_tag() }}
+      
+      <div class="moz-form-group">
+        <label>Email</label>
+        {{ form.email(size=32, class="moz-input", placeholder="Enter email*") }}
+        {% if form.email.errors %}
+          <span class="moz-error">{{ form.email.errors[0] }}</span>
+        {% endif %}
+      </div>
+      
+      <div class="moz-form-group">
+        <label>Password</label>
+        {{ form.password(size=32, class="moz-input", placeholder="Enter password*") }}
+        {% if form.password.errors %}
+          <span class="moz-error">{{ form.password.errors[0] }}</span>
+        {% endif %}
+      </div>
+      
+      <div class="moz-options">
+        <div class="moz-remember">
+          <input type="checkbox" id="remember">
+          <label for="remember">Remember me</label>
+        </div>
+        <a href="{{ url_for('forgot_password') }}" class="moz-reset">Reset Password</a>
+      </div>
+      
+      {{ form.submit(class="moz-submit", value="Login") }}
+    </form>
+    
+    <div class="moz-feature-box">
+      <div class="moz-feature-tag">NEW FEATURE</div>
+      <h3>Keyword Gap</h3>
+      <p>Discover competitors' hidden keyword gems</p>
+      
+      <div class="moz-new-badge">NEW!</div>
+      
+      <div class="moz-feature-data">
+        <h4>Competitor Overlap</h4>
+        <p>Source Keywords: 39.8K</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
